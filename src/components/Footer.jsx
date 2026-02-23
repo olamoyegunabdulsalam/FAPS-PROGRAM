@@ -41,7 +41,7 @@ export default function Footer() {
       </p>
       <div className="text-center mt-4 pt-4 border-t border-white/10">
         <p className="text-sm text-gray-400">
-          Website designed & developed by{" "}
+          Website designed &amp; developed by{" "}
           <a
             href="https://olamoyegunabdulsalam.vercel.app/"
             target="_blank"
@@ -51,14 +51,16 @@ export default function Footer() {
             Olamoyegun Abdulsalam
           </a>
         </p>
-        <p className="text-xs text-gray-500 mt-1 flex items-center justify-center gap-4 pb-3">
-          <span className="flex gap-2">
-            <FiMail size={16} />
+
+        <p className="text-xs text-gray-500 mt-1 pb-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
+          <span className="flex items-center gap-1.5">
+            <FiMail size={13} />
             olamoyegunabdulsalam59@gmail.com
           </span>
-          |
-          <span className="flex gap-2">
-            <FiPhone size={16} /> +234 907 502 5164
+          <span className="hidden sm:inline text-gray-600">|</span>
+          <span className="flex items-center gap-1.5">
+            <FiPhone size={13} />
+            +234 907 502 5164
           </span>
         </p>
       </div>
