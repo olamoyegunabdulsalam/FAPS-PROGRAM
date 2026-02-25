@@ -18,7 +18,7 @@ export default function Footer() {
         </svg>
       </div>
 
-      <div className="flex flex-col items-center mb-3">
+      <div className="flex flex-col items-center pb-3">
         <img
           src="/images/kdu-logo.gif"
           alt="KDU Logo"
@@ -31,37 +31,11 @@ export default function Footer() {
         >
           Faculty of Applied Science
         </h4>
-      </div>
-
-      <p
-        className="text-xs text-center"
-        style={{ color: "rgba(223,234,247,0.4)" }}
-      >
-        © 2026 Faculty of Applied Science. All rights reserved.
-      </p>
-      <div className="text-center mt-4 pt-4 border-t border-white/10">
-        <p className="text-sm text-gray-400">
-          Website designed &amp; developed by{" "}
-          <a
-            href="https://olamoyegunabdulsalam.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold hover:underline"
-          >
-            Olamoyegun Abdulsalam
-          </a>
-        </p>
-
-        <p className="text-xs text-gray-500 mt-1 pb-3 flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-          <span className="flex items-center gap-1.5">
-            <FiMail size={13} />
-            olamoyegunabdulsalam59@gmail.com
-          </span>
-          <span className="hidden sm:inline text-gray-600">|</span>
-          <span className="flex items-center gap-1.5">
-            <FiPhone size={13} />
-            +234 907 502 5164
-          </span>
+        <p
+          className="text-xs text-center"
+          style={{ color: "rgba(223,234,247,0.4)" }}
+        >
+          © 2026 Faculty of Applied Science. All rights reserved.
         </p>
       </div>
     </footer>

@@ -30,19 +30,19 @@ function SectionLabel({ text }) {
 /* ── picture card with floating caption ─────────────────────── */
 function PersonCard({ src, alt, title, subtitle }) {
   return (
-    <div className="relative mb-14 sm:mb-10">
-      {/* image */}
+    <div className="relative mb-16">
+      {/* image container with fixed portrait ratio */}
       <div
-        className="rounded-3xl overflow-hidden shadow-2xl relative"
-        style={{ border: `3px solid ${palette.yellow}` }}
+        className="rounded-3xl overflow-hidden shadow-2xl relative flex items-center justify-center"
+        style={{
+          border: `3px solid ${palette.yellow}`,
+          aspectRatio: "3 / 4", // ensures consistent portrait shape
+          background: "#f8fafc",
+        }}
       >
-        <img
-          src={src}
-          alt={alt}
-          className="w-full object-cover"
-          style={{ maxHeight: 480, objectPosition: "top" }}
-        />
-        {/* subtle blue overlay at bottom for legibility */}
+        <img src={src} alt={alt} className="w-full h-full object-cover" />
+
+        {/* bottom gradient */}
         <div
           className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
           style={{
@@ -52,14 +52,18 @@ function PersonCard({ src, alt, title, subtitle }) {
         />
       </div>
 
-      {/* floating caption */}
+      {/* caption */}
       <div
-        className="absolute -bottom-8 left-4 right-4 sm:left-6 sm:right-auto bg-white p-4 sm:p-5 rounded-2xl shadow-xl"
-        style={{ border: `1px solid rgba(10,38,71,0.08)`, maxWidth: 340 }}
+        className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-white p-5 rounded-2xl shadow-xl text-center w-[85%]"
+        style={{ border: "1px solid rgba(10,38,71,0.08)" }}
       >
-        <p className="text-sm font-bold leading-snug" style={{ color: palette.blue }}>
+        <p
+          className="text-sm font-bold leading-snug"
+          style={{ color: palette.blue }}
+        >
           {title}
         </p>
+
         <p className="text-xs mt-1 leading-snug text-gray-500">{subtitle}</p>
       </div>
     </div>
@@ -70,8 +74,11 @@ export default function About() {
   const [ref, visible] = useFadeIn();
 
   return (
-    <section id="about" className="py-20 sm:py-28" style={{ background: "#ffffff" }}>
-
+    <section
+      id="about"
+      className="py-20 sm:py-28"
+      style={{ background: "#ffffff" }}
+    >
       <style>{`
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(24px); }
@@ -83,11 +90,10 @@ export default function About() {
         ref={ref}
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700"
         style={{
-          opacity:   visible ? 1 : 0,
+          opacity: visible ? 1 : 0,
           transform: visible ? "translateY(0)" : "translateY(28px)",
         }}
       >
-
         {/* ════════════════════════════════════════════════════════
             BLOCK 1 — Conference intro message
         ════════════════════════════════════════════════════════ */}
@@ -97,8 +103,7 @@ export default function About() {
           className="text-3xl sm:text-4xl font-bold mb-10"
           style={{ color: palette.blue, letterSpacing: "-0.02em" }}
         >
-          A Premier Academic{" "}
-          <br className="hidden md:block" />
+          A Premier Academic <br className="hidden md:block" />
           Gathering
         </h2>
 
@@ -159,18 +164,18 @@ export default function About() {
         <div className="grid sm:grid-cols-2 gap-8 md:gap-12 mb-28 sm:mb-32">
           {/* Picture of Vice Chancellor */}
           <PersonCard
-            src="https://koladaisiuniversity.edu.ng/wp-content/uploads/2023/05/IMG-20230517-WA0005.jpg"
+            src="/images/VC-Prof-Adeniyi-Olatunbosun.jpeg"
             alt="Vice Chancellor picture"
-            title="Chief Host: Prof Olatunbosun san"
-            subtitle="Vice-Chancellor of KolaDaisi University, Ibadan, Nigeria"
+            title="Chief Host: Professor Adeniyi I, Olatunbosun, SAN"
+            subtitle="Vice-Chancellor KolaDaisi University, Ibadan"
           />
 
           {/* Picture of Dean, Faculty of Applied Sciences */}
           <PersonCard
-            src="https://koladaisiuniversity.edu.ng/wp-content/uploads/2026/02/IMG-20260212-WA0033-150x150.jpg"
+            src="/images/Dean-Picture.jpeg"
             alt="Dean of Faculty of Applied Sciences picture"
-            title="Host: Prof Ademola Olusola ADESINA"
-            subtitle="Dean, Faculty of Applied Sciences — KolaDaisi University, Ibadan, Nigeria"
+            title="Host: Prof Ademola A. Adesina"
+            subtitle="Dean, Faculty of Applied Sciences KolaDaisi University, Ibadan"
           />
         </div>
 
@@ -186,7 +191,6 @@ export default function About() {
         <SectionLabel text="About KolaDaisi University (KDU), Ibadan, Nigeria" />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-
           {/* Description */}
           <div
             className="text-base leading-relaxed"
@@ -202,9 +206,13 @@ export default function About() {
               institution. The university was founded by Chief Kola Daisi to
               expand access to quality higher education and promote academic
               excellence, innovation, and entrepreneurship. It offers
-              undergraduate programs across several faculties, including Applied
-              Sciences, Computing and Information Technology, Arts, Management
-              and Social Sciences, and Law.{" "}
+              undergraduate programs across several faculties, including{" "}
+              <span style={{ color: palette.blue, fontWeight: 500 }}>
+                Faculty of Applied Sciences, Faculty of Basic Medical Sciences,
+                Faculty of Law and Faculty of Art and Management Sciences
+              </span>
+              .
+              <br />
               <span style={{ color: palette.blue, fontWeight: 700 }}>
                 KolaDaisi University
               </span>{" "}
@@ -220,10 +228,8 @@ export default function About() {
                 rel="noreferrer"
                 className="not-italic font-bold underline underline-offset-2 transition-colors duration-200"
                 style={{ color: palette.blue }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = palette.blueMid)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = palette.blue)}
               >
-                KolaDaisi University.edu.ng
+                koladaisiuniversity.edu.ng
               </a>
             </p>
           </div>
@@ -241,7 +247,6 @@ export default function About() {
             />
           </div>
         </div>
-
       </div>
     </section>
   );

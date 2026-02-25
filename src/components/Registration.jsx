@@ -238,11 +238,11 @@ export default function Registration() {
                 {submitting ? (
                   <>
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Submitting…
+                    Registrating…
                   </>
                 ) : (
                   <>
-                    Submit Registration <FiArrowRight size={16} />
+                   Registration <FiArrowRight size={16} />
                   </>
                 )}
               </button>
@@ -259,7 +259,7 @@ export default function Registration() {
                 >
                   <FiCheck size={18} className="mt-0.5 flex-shrink-0" />
                   <span>
-                    Registration submitted successfully! A confirmation will be
+                    Registration successfully! A confirmation will be
                     sent to your email shortly.
                   </span>
                 </div>
@@ -289,14 +289,11 @@ export default function Registration() {
             }}
           >
             <div>
-              <p className="font-semibold text-white text-base">
-                Presenting at the conference?
-              </p>
               <p
                 className="text-sm mt-0.5"
                 style={{ color: "rgba(255,255,255,0.6)" }}
               >
-                Submit your abstract for review by the scientific committee.
+                Submit your abstract for review.
               </p>
             </div>
             <button

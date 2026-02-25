@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FiArrowRight, FiChevronDown, FiFileText } from "react-icons/fi";
+import { FiArrowRight, FiChevronDown } from "react-icons/fi";
 import { scrollTo } from "../utils/helpers";
 import AbstractModal from "./AbstractModal";
 
@@ -12,12 +12,14 @@ const themeColor = {
   white: "#ffffff",
 };
 
-
 export default function Hero() {
+  // ✅ useState is now INSIDE the component
   const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <>
       <AbstractModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
       <section
         id="home"
         className="relative flex items-center justify-center overflow-hidden"
@@ -26,25 +28,23 @@ export default function Hero() {
           background: `linear-gradient(150deg, ${themeColor.blue} 0%, ${themeColor.blueMid} 50%, ${themeColor.blueLight} 100%)`,
         }}
       >
-        {/* Keyframe styles */}
         <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(24px); }
-          to   { opacity: 1; transform: translateY(0);    }
-        }
-        @media (max-width: 640px) {
-          .hero-headline { font-size: 1.7rem !important; }
-          .hero-meta h4  { font-size: 0.9rem !important; }
-          .hero-badge    { font-size: 0.65rem !important; }
-          .hero-cta      { width: 100% !important; justify-content: center !important; }
-          .hero-cta-wrap { flex-direction: column !important; align-items: stretch !important; }
-        }
-        @media (min-width: 641px) and (max-width: 1023px) {
-          .hero-headline { font-size: 2.4rem !important; }
-        }
-      `}</style>
+          @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0);    }
+          }
+          @media (max-width: 640px) {
+            .hero-headline { font-size: 1.7rem !important; }
+            .hero-meta h4  { font-size: 0.9rem !important; }
+            
+            .hero-cta      { width: 100% !important; justify-content: center !important; }
+            .hero-cta-wrap { flex-direction: column !important; align-items: stretch !important; }
+          }
+          @media (min-width: 641px) and (max-width: 1023px) {
+            .hero-headline { font-size: 2.4rem !important; }
+          }
+        `}</style>
 
-        {/* Decorative dot-grid — themeColor gold tint */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -54,8 +54,6 @@ export default function Hero() {
             backgroundSize: "60px 60px",
           }}
         />
-
-        {/* Glowing orbs — gold & brown */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -80,7 +78,6 @@ export default function Hero() {
               "radial-gradient(circle, rgba(0,53,128,0.5) 0%, transparent 70%)",
           }}
         />
-        {/* extra top-left glow */}
         <div
           className="absolute pointer-events-none"
           style={{
@@ -94,32 +91,13 @@ export default function Hero() {
           }}
         />
 
-        {/* Main content */}
         <div
           className="relative w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
           style={{
-            paddingTop: "clamp(90px, 14vw, 130px)",
+            paddingTop: "clamp(120px, 16vw, 180px)",
             paddingBottom: "clamp(60px, 10vw, 100px)",
           }}
         >
-          {/* Badge */}
-          <div
-            className="hero-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest mb-6 sm:mb-8"
-            style={{
-              background: "rgba(245,194,0,0.15)",
-              border: `1px solid rgba(245,194,0,0.45)`,
-              color: themeColor.yellowLight,
-              animation: "fadeUp 0.6s 0.1s both",
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse flex-shrink-0"
-              style={{ background: themeColor.yellowLight }}
-            />
-            2nd International Scientific Conference · 2026
-          </div>
-
-          {/* Headline */}
           <h1
             className="hero-headline font-bold leading-tight mb-5 sm:mb-6 text-4xl"
             style={{
@@ -134,7 +112,6 @@ export default function Hero() {
             </span>
           </h1>
 
-          {/* Date & Venue */}
           <div
             className="hero-meta text-white text-center mb-6 sm:mb-8 space-y-1"
             style={{ animation: "fadeUp 0.7s 0.35s both" }}
@@ -153,7 +130,6 @@ export default function Hero() {
             </h4>
           </div>
 
-          {/* CTAs */}
           <div
             className="hero-cta-wrap flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
             style={{ animation: "fadeUp 0.7s 0.5s both" }}
@@ -186,6 +162,7 @@ export default function Hero() {
               Register Now <FiArrowRight size={16} />
             </a>
 
+            {/* ✅ Changed from <a> to <button> and wired up onClick */}
             <button
               onClick={() => setModalOpen(true)}
               className="hero-cta inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base transition-all duration-200 w-full sm:w-auto justify-center"
@@ -193,6 +170,7 @@ export default function Hero() {
                 background: "rgba(255,255,255,0.08)",
                 color: "rgba(255,255,255,0.85)",
                 border: "1px solid rgba(255,255,255,0.2)",
+                cursor: "pointer",
               }}
               onMouseEnter={(e) =>
                 (e.currentTarget.style.background = "rgba(255,255,255,0.15)")
@@ -201,12 +179,10 @@ export default function Hero() {
                 (e.currentTarget.style.background = "rgba(255,255,255,0.08)")
               }
             >
-              <FiFileText size={15} />
               Submit Abstracts
             </button>
           </div>
 
-          {/* Scroll indicator */}
           <div
             className="mt-16 sm:mt-20 flex flex-col items-center gap-1 opacity-40"
             style={{ animation: "fadeUp 0.7s 0.9s both" }}
@@ -218,7 +194,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Bottom wave — matches page background */}
         <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
           <svg
             viewBox="0 0 1440 60"
